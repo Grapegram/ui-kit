@@ -7,7 +7,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 font-body font-regular;
+    @apply border-border outline-ring/35 font-body font-regular;
   }
   body {
     @apply bg-background text-foreground;
