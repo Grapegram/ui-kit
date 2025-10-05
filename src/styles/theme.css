@@ -31,6 +31,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-ring-destructive: var(--ring-destructive);
 
   /* font design tokens */
   --font-roboto: 'Roboto';
@@ -144,6 +145,7 @@
   --border: var(--color-gray-750);
   --input: var(--color-gray-200);
   --ring: var(--color-gray-100);
+  --ring-destructive: var(--color-rose-500);
 }
 
 .dark {
@@ -178,4 +180,5 @@
   --border: var(--color-gray-200);
   --input: var(--color-gray-200);
   --ring: var(--color-gray-900);
+  --ring-destructive: var(--color-rose-500);
 }
