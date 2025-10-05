@@ -13,7 +13,8 @@
     "format": "prettier --write --ignore-unknown src/",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
@@ -41,6 +42,7 @@
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.5.1",
     "@vue/tsconfig": "^0.7.0",
+    "chromatic": "^13.3.0",
     "eslint": "^9.29.0",
     "eslint-plugin-storybook": "^9.1.7",
     "eslint-plugin-vue": "~10.2.0",
