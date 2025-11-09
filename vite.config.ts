@@ -25,6 +25,7 @@ export default defineConfig({
     tailwindcss(),
     dts({
       insertTypesEntry: true,
+      copyDtsFiles: true,
     }),
   ],
   resolve: {

@@ -33,7 +33,10 @@
       "import": "./dist/ui-kit.es.js",
       "require": "./dist/ui-kit.umd.js"
     },
-    "./styles": "./dist/ui-kit.css"
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/ui-kit.css"
+    }
   },
   "scripts": {
     "build": "vue-tsc && vite build",
