@@ -43,9 +43,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "deploy-storybook": "npx chromatic",
-    "release:major": "npm version $(semver $npm_package_version -i major) && git push --tags",
-    "release:minor": "npm version $(semver $npm_package_version -i minor) && git push --tags",
-    "release:patch": "npm version $(semver $npm_package_version -i patch) && git push --tags"
+    "release:major": "npm version $(semver $npm_package_version -i major) && git push && git push --tags",
+    "release:minor": "npm version $(semver $npm_package_version -i minor) && git push && git push --tags",
+    "release:patch": "npm version $(semver $npm_package_version -i patch) && git push && git push --tags"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
