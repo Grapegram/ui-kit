@@ -1,6 +1,6 @@
 {
   "name": "@grapegram/ui-kit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Grapegram ecosustem UI Kit for Vue 3",
   "keywords": [
     "vue",
@@ -21,14 +21,17 @@
     "url": "https://github.com/Grapegram/ui-kit/issues"
   },
   "type": "module",
+  "main": "./dist/ui-kit.umd.js",
+  "module": "./dist/ui-kit.es.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/ui-kit.es.js",
-      "require": "./dist/ui-kit.umd.cjs"
+      "require": "./dist/ui-kit.umd.js"
     },
     "./styles": "./dist/ui-kit.css"
   },
