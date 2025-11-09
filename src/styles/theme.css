@@ -1,5 +1,3 @@
-@import '../fonts/fonts.css';
-
 @theme inline {
   /* reset some default tailwind tokens */
   --color-*: initial;
