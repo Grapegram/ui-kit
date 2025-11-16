@@ -1,9 +1,7 @@
-name: Build and Deploy Storybook to GitHub Pages
-
 on:
   push:
     branches:
-      - 'main'
+      - "main" 
 
 permissions:
   contents: read
@@ -12,23 +10,14 @@ permissions:
 
 jobs:
   deploy:
-    environment:
+    environment: 
       name: github-pages
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
-        with:
-          install_command: yarn install
-          build_command: yarn build-storybook
-          path: storybook-static
-          checkout: false
+    - id: build-publish
+      uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+      with:
+        install_command: yarn install
+        build_command: yarn build-storybook
+        path: storybook-static
+        checkout: false
