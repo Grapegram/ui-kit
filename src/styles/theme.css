@@ -1,3 +1,4 @@
+/* TAILWIND UTILITY CONFIGURATION */
 @theme inline {
   /* reset some default tailwind tokens */
   --color-*: initial;
@@ -57,10 +58,13 @@
   --text-xl--line-height: var(--line-height-headings);
   --text-base: 1rem;
   --text-base--line-height: var(--line-height-body);
+  --text-base--letter-spacing: calc(var(--letter-spacing-body) * 1rem);
   --text-sm: 0.875rem;
   --text-sm--line-height: var(--line-height-body);
+  --text-sm--letter-spacing: calc(var(--letter-spacing-body-sm) * 1rem);
   --text-xs: 0.75rem;
   --text-xs--line-height: var(--line-height-body);
+  --text-xs--letter-spacing: calc(var(--letter-spacing-caption) * 1rem);
 
   /* spacing design tokens */
   --radius-sm: calc(var(--radius) - 4px);
@@ -110,12 +114,20 @@
   --color-brand: oklch(0.5508 0.2267 311.56);
 }
 
-/* themes  */
+/* GRAPEGRAM THEMES  */
 :root {
+  /* *general */
+  /*? could be setted as percentage values according to figma design */
   --radius: 0.5rem;
+
   --line-height-headings: 1.2;
   --line-height-body: 1.5;
 
+  --letter-spacing-body: 0.03;
+  --letter-spacing-body-sm: 0.015;
+  --letter-spacing-caption: 0.06;
+
+  /* *colors */
   --background: var(--color-gray-900);
   --foreground: var(--color-gray-50);
 
@@ -147,10 +159,12 @@
 }
 
 .dark {
+  /* *general */
   --radius: 0.5rem;
   --line-height-headings: 1.2;
   --line-height-body: 1.5;
 
+  /* *colors */
   --background: var(--color-gray-100);
   --foreground: var(--color-gray-900);
 
