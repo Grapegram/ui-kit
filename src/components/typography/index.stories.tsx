@@ -6,6 +6,29 @@ const meta: Meta<typeof Typography> = {
   component: Typography,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+Do not forget to import styles of UI-kit first:
+\`\`\`tsx
+//src/main.ts
+import "@grapegram/ui-kit/styles";
+
+//or directly in your main css entry file
+
+//src/style.css
+@import "@grapegram/ui-kit/styles";
+\`\`\`
+
+Then you can import and use component in your file:
+
+\`\`\`tsx
+//src/components/Component.tsx
+import { Typography } from "@grapegram/ui-kit";
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -25,6 +48,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This is how text will be looking by default for yout app. <br/> All text content use <b>Roboto</b> font.',
+      },
+    },
+  },
   args: {
     variant: 'body',
     weight: 'regular',
@@ -37,20 +68,20 @@ export const HeadingsStyling: Story = {
     docs: {
       description: {
         story:
-          'All heading variants from <span className="font-bold">h1</span> to <span className="font-bold">h6</span>.',
+          'All heading variants from <span className="font-bold">h1</span> to <span className="font-bold">h6</span>. <br/> All heading levels use <b>Rubik </b> font.',
       },
     },
   },
   render: () => ({
     components: { Typography },
     template: `
-      <div className="flex flex-col gap-4 max-w-[1000px]">
-        <Typography variant="h1"><span className="text-accent font-bold">Heading 1</span> - Grapegram messager</Typography>
-        <Typography variant="h2"><span className="text-accent font-bold">Heading 2</span> - Grapegram messager</Typography>
-        <Typography variant="h3"><span className="text-accent font-bold">Heading 3</span> - Grapegram messager</Typography>
-        <Typography variant="h4"><span className="text-accent font-bold">Heading 4</span> - Grapegram messager</Typography>
-        <Typography variant="h5"><span className="text-accent font-bold">Heading 5</span> - Grapegram messager</Typography>
-        <Typography variant="h6"><span className="text-accent font-bold">Heading 6</span> - Grapegram messager</Typography>
+      <div className="flex flex-col gap-4">
+        <Typography variant="h1"><span className="text-accent font-bold">Heading 1</span> - Grapegram messenger</Typography>
+        <Typography variant="h2"><span className="text-accent font-bold">Heading 2</span> - Grapegram messenger</Typography>
+        <Typography variant="h3"><span className="text-accent font-bold">Heading 3</span> - Grapegram messenger</Typography>
+        <Typography variant="h4"><span className="text-accent font-bold">Heading 4</span> - Grapegram messenger</Typography>
+        <Typography variant="h5"><span className="text-accent font-bold">Heading 5</span> - Grapegram messenger</Typography>
+        <Typography variant="h6"><span className="text-accent font-bold">Heading 6</span> - Grapegram messenger</Typography>
       </div>
     `,
   }),
@@ -88,7 +119,8 @@ export const FontWeights: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Different font weights applied to the same variant.',
+        story:
+          'Different font weights applied to the same variant. <br/> For now variants from h1 to h6 to not have any other weights except bold.',
       },
     },
   },
@@ -96,10 +128,10 @@ export const FontWeights: Story = {
     components: { Typography },
     template: `
       <div style="display: flex; flex-direction: column; gap: 12px; max-width: 600px;">
-        <Typography variant="h4" weight="light">Light weight heading</Typography>
-        <Typography variant="h4" weight="regular">Regular weight heading</Typography>
-        <Typography variant="h4" weight="medium">Medium weight heading</Typography>
-        <Typography variant="h4" weight="bold">Bold weight heading</Typography>
+        <Typography variant="body" weight="light">Light weight heading</Typography>
+        <Typography variant="body" weight="regular">Regular weight heading</Typography>
+        <Typography variant="body" weight="medium">Medium weight heading</Typography>
+        <Typography variant="body" weight="bold">Bold weight heading</Typography>
       </div>
     `,
   }),
@@ -134,7 +166,7 @@ export const CustomTag: Story = {
     docs: {
       description: {
         story:
-          'Override the default HTML tag using the `as` prop while keeping the variant styling.',
+          'Override the default HTML tag using the `as` prop while keeping the variant styling. <br/> It is usefull for SEO when you need to use another tag to describe your content.',
       },
     },
   },
