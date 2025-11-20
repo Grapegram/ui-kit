@@ -31,6 +31,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-destructive: var(--ring-destructive);
+  --color-ring-accent: var(--ring-accent);
 
   /* font design tokens */
   --font-roboto: 'Roboto';
@@ -153,9 +154,10 @@
   --popover-foreground: var(--color-gray-850);
 
   --border: var(--color-gray-750);
-  --input: var(--color-gray-200);
+  --input: var(--color-gray-750);
   --ring: var(--color-gray-100);
   --ring-destructive: var(--color-rose-500);
+  --ring-accent: var(--color-brand);
 }
 
 .dark {
@@ -193,4 +195,5 @@
   --input: var(--color-gray-200);
   --ring: var(--color-gray-900);
   --ring-destructive: var(--color-rose-500);
+  --ring-accent: var(--color-brand);
 }
