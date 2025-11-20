@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 
 export type Props = {
   text: string
+  hasFooter?: boolean
   class?: string
 }
 
@@ -11,7 +12,9 @@ defineOptions({
   name: 'TextContent',
 })
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  hasFooter: false,
+})
 
 interface MarkdownInstance {
   render: (text: string) => string
@@ -40,15 +43,21 @@ const renderedHtml = computed(() => {
 
 <template>
   <div :class="cn('text-content prose prose-sm max-w-none', props.class)">
-    <!-- eslint-disable-next-line vue/no-v-html -->
-    <div v-html="renderedHtml" />
+    <div v-html="renderedHtml" class="text-content-body" />
   </div>
 </template>
 
 <style scoped>
+@reference "#main.css";
+
 .text-content {
   word-wrap: break-word;
   overflow-wrap: break-word;
+  display: inline;
+}
+
+.text-content-body {
+  display: inline;
 }
 
 /* Markdown prose styles */
@@ -111,10 +120,7 @@ const renderedHtml = computed(() => {
 }
 
 .text-content :deep(blockquote) {
-  border-left: 3px solid var(--accent);
-  padding-left: 1em;
-  margin: 0.5em 0;
-  color: rgba(255, 255, 255, 0.7);
+  @apply bg-accent/10 border-accent my-2 rounded-md border-l-4 p-1 pl-2;
 }
 
 .text-content :deep(h1),

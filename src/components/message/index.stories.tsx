@@ -60,7 +60,16 @@ import { Message } from "@grapegram/ui-kit";
     },
     content: {
       control: 'object',
-      description: 'Message content (text and images)',
+      description: 'Message content with text and images',
+    },
+    timestamp: {
+      control: 'text',
+      description: 'Message timestamp (string or Date)',
+    },
+    status: {
+      control: 'select',
+      options: ['sending', 'sent', 'delivered', 'read'],
+      description: 'Message delivery status (only shown for right side messages)',
     },
   },
 }
@@ -87,6 +96,8 @@ export const Default: Story = {
     user: defaultUser,
     content: defaultContent,
     showHeader: true,
+    timestamp: '12:34',
+    status: 'sent',
   },
   render: (args) => ({
     components: { Message },
@@ -105,6 +116,8 @@ export const LeftSide: Story = {
     user: defaultUser,
     content: defaultContent,
     showHeader: true,
+    timestamp: '10:23',
+    status: 'sent',
   },
   render: (args) => ({
     components: { Message },
@@ -152,6 +165,8 @@ export const WithSingleImage: Story = {
       images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4'],
     },
     showHeader: true,
+    timestamp: '14:56',
+    status: 'sent',
   },
   render: (args) => ({
     components: { Message },
@@ -542,6 +557,7 @@ export const ChatConversation: Story = {
             :user="alice"
             :content="{ text: 'Hey Bob! How is the project going?', images: [] }"
             :show-header="true"
+            timestamp="09:30"
           />
         </div>
 
@@ -553,6 +569,8 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'Hi Alice!', images: [] }"
             :show-header="false"
+            timestamp="09:31"
+            status="read"
           />
         </div>
 
@@ -564,6 +582,8 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'It is going really well!', images: [] }"
             :show-header="false"
+            timestamp="09:31"
+            status="read"
           />
         </div>
 
@@ -575,6 +595,8 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'We should be done by next week.', images: [] }"
             :show-header="false"
+            timestamp="09:31"
+            status="read"
           />
         </div>
 
@@ -586,6 +608,7 @@ export const ChatConversation: Story = {
             :user="alice"
             :content="{ text: 'That is awesome!', images: [] }"
             :show-header="false"
+            timestamp="09:32"
           />
         </div>
 
@@ -597,6 +620,7 @@ export const ChatConversation: Story = {
             :user="alice"
             :content="{ text: 'Let me know if you need any help.', images: [] }"
             :show-header="false"
+            timestamp="09:32"
           />
         </div>
 
@@ -608,6 +632,126 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'Will do, thanks! 👍', images: [] }"
             :show-header="false"
+            timestamp="09:33"
+            status="delivered"
+          />
+        </div>
+      </div>
+    `,
+  }),
+}
+
+export const WithTimestampAndStatus: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Demonstrates timestamp and read status indicators. For images-only messages, the footer overlays on the image. For text messages, the footer appears inline at the end.',
+      },
+    },
+  },
+  render: () => ({
+    components: { Message },
+    setup() {
+      return {
+        alice: { username: 'Alice', color: '#ec4899' },
+        bob: { username: 'Bob', color: '#10b981' },
+      }
+    },
+    template: `
+      <div style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; padding: 20px; background: var(--background); border-radius: 12px;">
+        <!-- Left side message with text -->
+        <div style="display: flex; justify-content: flex-start;">
+          <Message
+            side="left"
+            color="secondary"
+            variant="standalone"
+            :user="alice"
+            :content="{ text: 'Hey! Check out this photo I took yesterday! 📸', images: [] }"
+            :show-header="true"
+            timestamp="14:25"
+          />
+        </div>
+
+        <!-- Right side with image only + overlay timestamp (read status) -->
+        <div style="display: flex; justify-content: flex-end;">
+          <Message
+            side="right"
+            color="primary"
+            variant="standalone"
+            :user="bob"
+            :content="{ text: null, images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4'] }"
+            :show-header="false"
+            timestamp="14:26"
+            status="read"
+          />
+        </div>
+
+        <!-- Left side response -->
+        <div style="display: flex; justify-content: flex-start;">
+          <Message
+            side="left"
+            color="secondary"
+            variant="standalone"
+            :user="alice"
+            :content="{ text: 'Wow! That is absolutely stunning! 😍', images: [] }"
+            :show-header="false"
+            timestamp="14:27"
+          />
+        </div>
+
+        <!-- Right side - sent status -->
+        <div style="display: flex; justify-content: flex-end;">
+          <Message
+            side="right"
+            color="primary"
+            variant="first"
+            :user="bob"
+            :content="{ text: 'Thanks!', images: [] }"
+            :show-header="false"
+            timestamp="14:27"
+            status="sent"
+          />
+        </div>
+
+        <!-- Right side - delivered status -->
+        <div style="display: flex; justify-content: flex-end;">
+          <Message
+            side="right"
+            color="primary"
+            variant="last"
+            :user="bob"
+            :content="{ text: 'I took it from the mountain peak during sunrise.', images: [] }"
+            :show-header="false"
+            timestamp="14:28"
+            status="delivered"
+          />
+        </div>
+
+        <!-- Multiple images with overlay timestamp -->
+        <div style="display: flex; justify-content: flex-start;">
+          <Message
+            side="left"
+            color="secondary"
+            variant="standalone"
+            :user="alice"
+            :content="{ text: null, images: ['https://images.unsplash.com/photo-1469474968028-56623f02e42e', 'https://images.unsplash.com/photo-1426604966848-d7adac402bff'] }"
+            :show-header="false"
+            timestamp="14:29"
+          />
+        </div>
+
+        <!-- Text with images - inline timestamp -->
+        <div style="display: flex; justify-content: flex-end;">
+          <Message
+            side="right"
+            color="primary"
+            variant="standalone"
+            :user="bob"
+            :content="{ text: 'These are beautiful too! We should go hiking together sometime.', images: ['https://images.unsplash.com/photo-1501594907352-04cda38ebc29'] }"
+            :show-header="false"
+            timestamp="14:30"
+            status="read"
           />
         </div>
       </div>
@@ -622,10 +766,12 @@ export const LongMessage: Story = {
     variant: 'standalone',
     user: { username: 'Alice', color: '#ec4899' },
     content: {
-      text: 'This is a much longer message to demonstrate how the component handles text that spans multiple lines. The message bubble should expand naturally to accommodate the content while maintaining its design integrity and proper border radius.',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       images: [],
     },
     showHeader: true,
+    timestamp: '16:20',
+    status: 'sent',
   },
   render: (args) => ({
     components: { Message },

@@ -2,6 +2,7 @@
 export type Side = 'left' | 'right'
 export type Color = 'primary' | 'secondary'
 export type Variants = 'first' | 'middle' | 'last' | 'standalone'
+export type MessageStatus = 'sending' | 'sent' | 'delivered' | 'read'
 
 export type User = {
   username: string
@@ -19,6 +20,8 @@ export type Props = {
   user: User
   content: MessageContent
   showHeader: boolean
+  timestamp: Date
+  status: MessageStatus
   class?: HTMLAttributes['class']
 }
 </script>
@@ -89,6 +92,9 @@ const showHeader = computed(
         :text="props.content.text"
         :images="props.content.images"
         :has-header="showHeader"
+        :side="props.side"
+        :timestamp="props.timestamp"
+        :status="props.status"
       />
     </div>
 
@@ -101,13 +107,5 @@ const showHeader = computed(
 .base-message {
   --radius-message-large: var(--radius-2xl);
   --radius-message-small: var(--radius-md);
-}
-
-.message-tail-right > div {
-  border-bottom-right-radius: 0;
-}
-
-.message-tail-left > div {
-  border-bottom-left-radius: 0;
 }
 </style>

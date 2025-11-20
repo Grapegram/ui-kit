@@ -27,6 +27,9 @@
   "files": [
     "dist"
   ],
+  "imports": {
+    "#main.css": "./src/styles/main.css"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
