@@ -10,8 +10,7 @@ export type Props = {
   text: string | null
   images: string[]
   hasHeader?: boolean
-  side: 'left' | 'right'
-  timestamp?: string | Date
+  timestamp: Date
   status?: MessageStatus
   class?: string
 }
@@ -31,56 +30,45 @@ const isSingleImage = computed(() => props.images.length === 1 && !hasText.value
 const hasOnlyImages = computed(() => !hasText.value && hasImages.value)
 
 const contentClasses = computed(() => ({
-  'px-3 pb-3': hasText.value || props.images.length > 1,
-  'pt-1': (hasText.value || props.images.length > 1) && props.hasHeader && !hasImages.value,
-  'pt-3':
-    ((hasText.value || props.images.length > 1) && !props.hasHeader) ||
-    ((hasText.value || props.images.length > 1) && props.hasHeader && hasImages.value),
+  'px-3 py-3': hasImages.value || hasText.value,
+  'pt-0': props.hasHeader,
   'p-0': isSingleImage.value,
+}))
+
+const imageMessageFooterClasses = computed(() => ({
+  'bottom-4 right-4': hasImages.value,
+  'bottom-1 right-1': isSingleImage.value,
 }))
 </script>
 
 <template>
-  <div :class="cn('message-content', props.class, contentClasses)">
+  <div :class="cn('flex flex-col items-center justify-center gap-3', props.class, contentClasses)">
     <!-- Images above text if both exist, or standalone images -->
     <template v-if="hasImages">
       <ImagesContent :images="props.images" class="w-full" />
 
       <!-- Footer overlay for only-images messages -->
       <MessageFooter
-        v-if="hasOnlyImages && props.timestamp"
+        v-if="hasOnlyImages"
         :timestamp="props.timestamp"
         :status="props.status"
-        :side="props.side"
         :overlay-mode="true"
+        :class="cn('absolute', imageMessageFooterClasses)"
       />
     </template>
 
     <!-- Text content with inline footer -->
-    <div v-if="hasText" class="flex items-end justify-between">
-      <TextContent :text="props.text!" :has-footer="!!props.timestamp" class="flex-1 break-words" />
+    <div v-if="hasText" class="flex w-full items-end justify-between">
+      <TextContent :text="props.text!" class="flex-1 break-words" />
 
       <!-- Inline footer for text messages -->
       <MessageFooter
         v-if="props.timestamp"
         :timestamp="props.timestamp"
         :status="props.status"
-        :side="props.side"
         :overlay-mode="false"
-        class="inline-footer nowrap"
+        class="t-[-2px] ml-4 inline-flex align-bottom"
       />
     </div>
   </div>
 </template>
-
-<style scoped>
-.message-content {
-  display: block;
-}
-
-.inline-footer {
-  display: inline-flex;
-  margin-left: 0.25rem;
-  vertical-align: bottom;
-}
-</style>
