@@ -6,4 +6,6 @@ export * from './components/button'
 export * from './components/input'
 export * from './components/typography'
 export * from './components/separator'
+export * from './components/skeleton'
+
 export * from './lib'
