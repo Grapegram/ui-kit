@@ -21,23 +21,25 @@ const tailClasses = computed(() => ({
 <template>
   <svg
     :class="['message-tail', tailClasses]"
-    width="6"
-    height="10"
-    viewBox="0 0 6 10"
+    width="8"
+    height="14"
+    viewBox="0 0 8 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <!-- Right Side Tail -->
     <path
       v-if="props.side === 'right'"
-      d="M0 0C0 3.21429 1.76471 7.67857 5.29412 8.57143C5.29412 8.57143 6 8.57143 6 9.28572C6 10 5.29412 10 5.29412 10L0 10V0Z"
+      d="
+      M2 4C2 7.21429 3.76471 11.6786 7.29412 12.5714C7.29412 12.5714 8 12.5714 8 13.2857C8 14 7.29412 14 7.29412 14H0V0L2 4Z
+"
       :fill="props.color"
     />
 
     <!-- Left Side Tail -->
     <path
       v-if="props.side === 'left'"
-      d="M6 0C6 3.21429 4.23529 7.67857 0.705882 8.57143C0.705882 8.57143 0 8.57143 0 9.28572C0 10 0.705882 10 0.705882 10L6 10V0Z"
+      d="M6 4C6 7.21429 4.23529 11.6786 0.705882 12.5714C0.705882 12.5714 0 12.5714 0 13.2857C0 14 0.705882 14 0.705882 14H8V0L6 4Z"
       :fill="props.color"
     />
   </svg>
