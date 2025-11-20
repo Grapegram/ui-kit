@@ -8,6 +8,7 @@ const props = defineProps<{
   class?: HTMLAttributes['class']
   orientation?: FieldVariants['orientation']
   invalid?: boolean
+  disabled?: boolean
 }>()
 
 defineOptions({
@@ -21,6 +22,7 @@ defineOptions({
     data-slot="field"
     :data-orientation="orientation"
     :data-invalid="invalid"
+    :data-disabled="disabled"
     :class="cn(fieldVariants({ orientation }), props.class)"
   >
     <slot />

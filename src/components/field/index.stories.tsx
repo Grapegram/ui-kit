@@ -56,13 +56,6 @@ Check the full documentation and more use-cases in shadcn-vue site [here](https:
     },
   },
   tags: ['autodocs'],
-  argTypes: {
-    orientation: {
-      control: 'select',
-      options: ['vertical', 'horizontal', 'responsive'],
-      description: 'Field orientation',
-    },
-  },
 }
 
 export default meta
@@ -96,7 +89,7 @@ export const Default: Story = {
   }),
 }
 
-export const WithError: Story = {
+export const InErrorState: Story = {
   parameters: {
     docs: {
       description: {
@@ -105,18 +98,51 @@ export const WithError: Story = {
       },
     },
   },
-  render: () => ({
+  args: {
+    invalid: true,
+  },
+  render: (args) => ({
     components: { Field, FieldLabel, FieldError, Input },
     setup() {
       const value = ref('user')
-      return { value }
+      return { value, args }
     },
     template: `
       <div class="w-[350px]">
-        <Field invalid>
+        <Field :invalid="args.invalid">
           <FieldLabel for="username">Username</FieldLabel>
-          <Input id="username" v-model="value" invalid />
+          <Input id="username" v-model="value" :invalid="args.invalid" />
           <FieldError>This username is already taken. Choose another one.</FieldError>
+        </Field>
+      </div>
+    `,
+  }),
+}
+
+export const InDisabledState: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Field in disabled state. All child elements inherit the disabled styling through group data attributes.',
+      },
+    },
+  },
+  args: {
+    disabled: true,
+  },
+  render: (args) => ({
+    components: { Field, FieldLabel, FieldDescription, Input },
+    setup() {
+      const value = ref('user')
+      return { value, args }
+    },
+    template: `
+      <div class="w-[350px]">
+        <Field :disabled="args.disabled">
+          <FieldLabel for="username">Username</FieldLabel>
+          <Input id="username" v-model="value" :disabled="args.disabled" />
+          <FieldDescription>This appears on invoices and emails.</FieldDescription>
         </Field>
       </div>
     `,
