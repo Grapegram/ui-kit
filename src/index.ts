@@ -7,5 +7,6 @@ export * from './components/input'
 export * from './components/typography'
 export * from './components/separator'
 export * from './components/skeleton'
+export * from './components/field'
 
 export * from './lib'
