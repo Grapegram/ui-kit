@@ -65,7 +65,7 @@ These notes orient AI coding agents (Copilot, Cursor, Windsurf, etc.) to be prod
 - Create `src/components/<name>/<Name>.vue`, `src/components/<name>/index.ts`, and `src/components/<name>/index.stories.tsx`.
 - Use CVA for variants when applicable; export the variant type with `VariantProps<typeof yourVariants>`.
 - Import `cn` for class composition; prefer semantic Tailwind tokens from the theme.
-- Add story args/controls mirroring your props and tag `['autodocs']`.
+- Add story args/controls mirroring your props and tag `['autodocs'] please use exsisting examples of stories for creating new stories. Use tailwindcss inside of stories instead plain css`.
 
 ## Gotchas
 
@@ -79,3 +79,4 @@ These notes orient AI coding agents (Copilot, Cursor, Windsurf, etc.) to be prod
 - provide professional and production ready code
 - write code like a senior developer using best practices of frameworks and languages
 - follow the architecture and structure of the existing codebase
+- follow connected figma design
