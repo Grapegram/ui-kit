@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { cn } from '@/lib/utils'
+import hljs from 'highlight.js'
+import MarkdownIt from 'markdown-it'
+// @ts-expect-error this module has no types
+import mdStrikethrough from 'markdown-it-strikethrough-alt'
 
 export type Props = {
   text: string
-  hasFooter?: boolean
   class?: string
 }
 
@@ -12,9 +15,7 @@ defineOptions({
   name: 'TextContent',
 })
 
-const props = withDefaults(defineProps<Props>(), {
-  hasFooter: false,
-})
+const props = defineProps<Props>()
 
 interface MarkdownInstance {
   render: (text: string) => string
@@ -23,16 +24,35 @@ interface MarkdownInstance {
 const md = ref<MarkdownInstance | null>(null)
 
 onMounted(async () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore - markdown-it has ESM import typing issues
-  const MarkdownIt = (await import('markdown-it')).default
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  md.value = new (MarkdownIt as any)({
-    html: false, // Disable HTML tags for security
-    linkify: true, // Auto-convert URLs to links
-    typographer: true, // Enable smart quotes and other typographic replacements
-    breaks: true, // Convert \n to <br>
+  const markdownInstance = new MarkdownIt({
+    html: false,
+    linkify: true,
+    typographer: false,
+    breaks: true,
+    highlight: function (str: string, lang: string) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(str, { language: lang }).value
+        } catch {
+          // ignore
+        }
+      }
+      return '' // use external default escaping
+    },
   })
+
+  markdownInstance.use(mdStrikethrough)
+  markdownInstance.disable([
+    'heading', // Disable h1-h6
+    'lheading', // Disable underline-style headings
+    'hr', // Disable horizontal rules
+    'list', // Disable lists (ul, ol)
+    'table', // Disable tables
+    'html_block', // Disable HTML blocks
+    'reference', // Disable reference-style links
+  ])
+
+  md.value = markdownInstance
 })
 
 const renderedHtml = computed(() => {
@@ -46,6 +66,10 @@ const renderedHtml = computed(() => {
     <div v-html="renderedHtml" class="text-content-body" />
   </div>
 </template>
+
+<style>
+@import 'highlight.js/styles/github-dark.css';
+</style>
 
 <style scoped>
 @reference "#main.css";
@@ -78,6 +102,10 @@ const renderedHtml = computed(() => {
   font-style: italic;
 }
 
+.text-content :deep(s) {
+  text-decoration: line-through;
+}
+
 .text-content :deep(code) {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 0.125rem 0.25rem;
@@ -100,55 +128,16 @@ const renderedHtml = computed(() => {
 }
 
 .text-content :deep(a) {
-  color: var(--accent);
+  color: var(--link);
+  text-decoration: none;
+}
+
+.text-content :deep(a:hover) {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.text-content :deep(a:hover) {
-  text-decoration: none;
-}
-
-.text-content :deep(ul),
-.text-content :deep(ol) {
-  margin: 0.5em 0;
-  padding-left: 1.5em;
-}
-
-.text-content :deep(li) {
-  margin: 0.25em 0;
-}
-
 .text-content :deep(blockquote) {
   @apply bg-accent/10 border-accent my-2 rounded-md border-l-4 p-1 pl-2;
-}
-
-.text-content :deep(h1),
-.text-content :deep(h2),
-.text-content :deep(h3),
-.text-content :deep(h4),
-.text-content :deep(h5),
-.text-content :deep(h6) {
-  margin: 0.75em 0 0.5em 0;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.text-content :deep(h1) {
-  font-size: 1.5em;
-}
-
-.text-content :deep(h2) {
-  font-size: 1.25em;
-}
-
-.text-content :deep(h3) {
-  font-size: 1.125em;
-}
-
-.text-content :deep(hr) {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 1em 0;
 }
 </style>
