@@ -63,8 +63,8 @@ import { Message } from "@grapegram/ui-kit";
       description: 'Message content with text and images',
     },
     timestamp: {
-      control: 'text',
-      description: 'Message timestamp (string or Date)',
+      control: 'date',
+      description: 'Message timestamp',
     },
     status: {
       control: 'select',
@@ -96,7 +96,7 @@ export const Default: Story = {
     user: defaultUser,
     content: defaultContent,
     showHeader: true,
-    timestamp: '12:34',
+    timestamp: new Date('2024-01-15T12:34:00'),
     status: 'sent',
   },
   render: (args) => ({
@@ -116,7 +116,7 @@ export const LeftSide: Story = {
     user: defaultUser,
     content: defaultContent,
     showHeader: true,
-    timestamp: '10:23',
+    timestamp: new Date('2024-01-15T10:23:00'),
     status: 'sent',
   },
   render: (args) => ({
@@ -165,7 +165,7 @@ export const WithSingleImage: Story = {
       images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4'],
     },
     showHeader: true,
-    timestamp: '14:56',
+    timestamp: new Date('2024-01-15T14:56:00'),
     status: 'sent',
   },
   render: (args) => ({
@@ -212,6 +212,7 @@ export const WithMultipleImages: Story = {
                 'https://images.unsplash.com/photo-1469474968028-56623f02e42e'
               ]
             }"
+            :timestamp="new Date('2024-01-15T14:30:00')"
             :show-header="true"
           />
         </div>
@@ -231,6 +232,7 @@ export const WithMultipleImages: Story = {
                 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29'
               ]
             }"
+            :timestamp="new Date('2024-01-15T14:30:00')"
             :show-header="false"
           />
         </div>
@@ -251,6 +253,7 @@ export const WithMultipleImages: Story = {
                 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'
               ]
             }"
+            :timestamp="new Date('2024-01-15T14:30:00')"
             :show-header="false"
           />
         </div>
@@ -299,7 +302,7 @@ export const WithMarkdown: Story = {
     docs: {
       description: {
         story:
-          'Text content supports full Markdown formatting including **bold**, *italic*, `code`, links, lists, and more.',
+          'Text content supports Markdown formatting including **bold**, *italic*, ~~strikethrough~~, `inline code`, links, and blockquotes.',
       },
     },
   },
@@ -311,10 +314,23 @@ export const WithMarkdown: Story = {
     content: {
       text: `Here's some **Markdown** support:
 
-- *Italic text* and **bold text**
-- \`inline code\`
-- [Links](https://example.com)
-- And automatic URL conversion: https://example.com
+**Bold text**, *italic text*, and ~~strikethrough~~
+
+Example Python code:
+\`\`\`python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+result = fibonacci(10)
+print(f"Fibonacci(10) = {result}")
+\`\`\`
+
+You can also use \`inline code\` like \`print("Hello")\`.
+
+Check out this link: [Example](https://example.com)
+Auto-linked URLs work too: https://example.com
 
 > This is a blockquote
 > It can span multiple lines`,
@@ -557,7 +573,7 @@ export const ChatConversation: Story = {
             :user="alice"
             :content="{ text: 'Hey Bob! How is the project going?', images: [] }"
             :show-header="true"
-            timestamp="09:30"
+            :timestamp="new Date('2024-01-15T09:30:00')"
           />
         </div>
 
@@ -569,7 +585,7 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'Hi Alice!', images: [] }"
             :show-header="false"
-            timestamp="09:31"
+            :timestamp="new Date('2024-01-15T09:31:00')"
             status="read"
           />
         </div>
@@ -582,7 +598,7 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'It is going really well!', images: [] }"
             :show-header="false"
-            timestamp="09:31"
+            :timestamp="new Date('2024-01-15T09:31:00')"
             status="read"
           />
         </div>
@@ -595,7 +611,7 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'We should be done by next week.', images: [] }"
             :show-header="false"
-            timestamp="09:31"
+            :timestamp="new Date('2024-01-15T09:31:00')"
             status="read"
           />
         </div>
@@ -608,7 +624,7 @@ export const ChatConversation: Story = {
             :user="alice"
             :content="{ text: 'That is awesome!', images: [] }"
             :show-header="false"
-            timestamp="09:32"
+            :timestamp="new Date('2024-01-15T09:32:00')"
           />
         </div>
 
@@ -620,7 +636,7 @@ export const ChatConversation: Story = {
             :user="alice"
             :content="{ text: 'Let me know if you need any help.', images: [] }"
             :show-header="false"
-            timestamp="09:32"
+            :timestamp="new Date('2024-01-15T09:32:00')"
           />
         </div>
 
@@ -632,7 +648,7 @@ export const ChatConversation: Story = {
             :user="bob"
             :content="{ text: 'Will do, thanks! 👍', images: [] }"
             :show-header="false"
-            timestamp="09:33"
+            :timestamp="new Date('2024-01-15T09:33:00')"
             status="delivered"
           />
         </div>
@@ -669,7 +685,7 @@ export const WithTimestampAndStatus: Story = {
             :user="alice"
             :content="{ text: 'Hey! Check out this photo I took yesterday! 📸', images: [] }"
             :show-header="true"
-            timestamp="14:25"
+            :timestamp="new Date('2024-01-15T14:25:00')"
           />
         </div>
 
@@ -682,7 +698,7 @@ export const WithTimestampAndStatus: Story = {
             :user="bob"
             :content="{ text: null, images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4'] }"
             :show-header="false"
-            timestamp="14:26"
+            :timestamp="new Date('2024-01-15T14:26:00')"
             status="read"
           />
         </div>
@@ -696,7 +712,7 @@ export const WithTimestampAndStatus: Story = {
             :user="alice"
             :content="{ text: 'Wow! That is absolutely stunning! 😍', images: [] }"
             :show-header="false"
-            timestamp="14:27"
+            :timestamp="new Date('2024-01-15T14:27:00')"
           />
         </div>
 
@@ -709,7 +725,7 @@ export const WithTimestampAndStatus: Story = {
             :user="bob"
             :content="{ text: 'Thanks!', images: [] }"
             :show-header="false"
-            timestamp="14:27"
+            :timestamp="new Date('2024-01-15T14:27:00')"
             status="sent"
           />
         </div>
@@ -723,7 +739,7 @@ export const WithTimestampAndStatus: Story = {
             :user="bob"
             :content="{ text: 'I took it from the mountain peak during sunrise.', images: [] }"
             :show-header="false"
-            timestamp="14:28"
+            :timestamp="new Date('2024-01-15T14:28:00')"
             status="delivered"
           />
         </div>
@@ -737,7 +753,7 @@ export const WithTimestampAndStatus: Story = {
             :user="alice"
             :content="{ text: null, images: ['https://images.unsplash.com/photo-1469474968028-56623f02e42e', 'https://images.unsplash.com/photo-1426604966848-d7adac402bff'] }"
             :show-header="false"
-            timestamp="14:29"
+            :timestamp="new Date('2024-01-15T14:29:00')"
           />
         </div>
 
@@ -750,7 +766,7 @@ export const WithTimestampAndStatus: Story = {
             :user="bob"
             :content="{ text: 'These are beautiful too! We should go hiking together sometime.', images: ['https://images.unsplash.com/photo-1501594907352-04cda38ebc29'] }"
             :show-header="false"
-            timestamp="14:30"
+            :timestamp="new Date('2024-01-15T14:30:00')"
             status="read"
           />
         </div>
@@ -770,7 +786,7 @@ export const LongMessage: Story = {
       images: [],
     },
     showHeader: true,
-    timestamp: '16:20',
+    timestamp: new Date('2024-01-15T16:20:00'),
     status: 'sent',
   },
   render: (args) => ({
