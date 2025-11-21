@@ -16,6 +16,11 @@ const preview: Preview = {
         light: { name: 'Light', value: 'var(--color-gray-100)' },
       },
     },
+    options: {
+      storySort: {
+        order: ['Getting Started', ['Installation'], 'Components'],
+      },
+    },
   },
   initialGlobals: {
     backgrounds: { value: 'dark' },

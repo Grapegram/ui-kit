@@ -1,0 +1,117 @@
+/* TAILWIND UTILITY CONFIGURATION */
+/* Import this file in your Tailwind config to use Grapegram design tokens */
+@theme inline {
+  /* reset some default tailwind tokens */
+  --color-*: initial;
+  --spacing-*: initial;
+  --radius-*: initial;
+  --font-*: initial;
+  --font-weight-*: initial;
+  --text-*: initial;
+
+  /* DESIGN TOKENS */
+
+  /* color design tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-destructive: var(--ring-destructive);
+  --color-ring-accent: var(--ring-accent);
+
+  /* font design tokens */
+  --font-roboto: 'Roboto';
+  --font-rubik: 'Rubik';
+  --font-body: 'Roboto', system-ui, sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-regular: normal;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* PRIMITIVES */
+  /* font size primitives */
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: var(--line-height-headings);
+  --text-5xl: 3rem;
+  --text-5xl--line-height: var(--line-height-headings);
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: var(--line-height-headings);
+  --text-3xl: 2rem;
+  --text-3xl--line-height: var(--line-height-headings);
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: var(--line-height-headings);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: var(--line-height-headings);
+  --text-base: 1rem;
+  --text-base--line-height: var(--line-height-body);
+  --text-base--letter-spacing: calc(var(--letter-spacing-body) * 1rem);
+  --text-sm: 0.875rem;
+  --text-sm--line-height: var(--line-height-body);
+  --text-sm--letter-spacing: calc(var(--letter-spacing-body-sm) * 1rem);
+  --text-xs: 0.75rem;
+  --text-xs--line-height: var(--line-height-body);
+  --text-xs--letter-spacing: calc(var(--letter-spacing-caption) * 1rem);
+
+  /* spacing design tokens */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* spacing primitives */
+  --spacing: 4px;
+
+  /* effects design tokens */
+  --background-image-purple-gradient: linear-gradient(180deg, #c55aca 0%, #911bd5 100%);
+
+  /* color primitives */
+  --color-gray-50: oklch(0.9612 0 0);
+  --color-gray-100: oklch(0.9219 0 0);
+  --color-gray-150: oklch(0.8822 0 0);
+  --color-gray-200: oklch(0.8421 0 0);
+  --color-gray-250: oklch(0.8015 0 0);
+  --color-gray-300: oklch(0.7604 0 0);
+  --color-gray-350: oklch(0.7187 0 0);
+  --color-gray-400: oklch(0.6764 0 0);
+  --color-gray-450: oklch(0.6334 0 0);
+  --color-gray-500: oklch(0.5863 0 0);
+  --color-gray-550: oklch(0.5417 0 0);
+  --color-gray-600: oklch(0.4962 0 0);
+  --color-gray-650: oklch(0.4495 0 0);
+  --color-gray-700: oklch(0.4017 0 0);
+  --color-gray-750: oklch(0.3523 0 0);
+  --color-gray-800: oklch(0.3012 0 0);
+  --color-gray-850: oklch(0.2478 0 0);
+  --color-gray-900: oklch(0.1913 0 0);
+
+  --color-rose-50: oklch(96.9% 0.015 12.422);
+  --color-rose-100: oklch(94.1% 0.03 12.58);
+  --color-rose-200: oklch(89.2% 0.058 10.001);
+  --color-rose-300: oklch(81% 0.117 11.638);
+  --color-rose-400: oklch(71.2% 0.194 13.428);
+  --color-rose-500: oklch(64.5% 0.246 16.439);
+  --color-rose-600: oklch(58.6% 0.253 17.585);
+  --color-rose-700: oklch(51.4% 0.222 16.935);
+  --color-rose-800: oklch(45.5% 0.188 13.697);
+  --color-rose-900: oklch(41% 0.159 10.272);
+  --color-rose-950: oklch(27.1% 0.105 12.094);
+
+  --color-brand: oklch(0.5508 0.2267 311.56);
+}

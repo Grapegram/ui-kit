@@ -36,6 +36,12 @@
     "./styles": {
       "types": "./dist/styles.d.ts",
       "default": "./dist/ui-kit.css"
+    },
+    "./tailwind-config": {
+      "default": "./dist/styles/tailwind.config.css"
+    },
+    "./theme": {
+      "default": "./dist/styles/theme.css"
     }
   },
   "scripts": {

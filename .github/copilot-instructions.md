@@ -30,7 +30,10 @@ These notes orient AI coding agents (Copilot, Cursor, Windsurf, etc.) to be prod
   - `index.ts` exporting the SFC and any variant utilities.
   - `*.stories.tsx` Storybook stories using `@storybook/vue3-vite` and tags `['autodocs']`.
 - Styling:
-  - Tailwind v4 token system is defined in `src/styles/theme.css` and loaded via `src/styles/main.css` (imported in Storybook `preview.ts`).
+  - Tailwind v4 token system is split into two files:
+    - `src/styles/tailwind.config.css` - contains `@theme inline` tokens for Tailwind utilities (exported separately for consumers)
+    - `src/styles/theme.css` - contains CSS variables (`:root` and `.dark` themes) for runtime theming
+  - Both files are loaded via `src/styles/main.css` (imported in Storybook `preview.ts`).
   - Utility `cn(...classes)` from `src/lib/utils.ts` merges class names with `clsx` + `tailwind-merge`.
   - Variant patterns use `class-variance-authority` (CVA). Example: `src/components/button/index.ts` defines `buttonVariants` and its TS type `ButtonVariants` used by the SFC.
 - Primitives: Components may render `reka-ui` primitives via the `Primitive` component to support `as`/`asChild` polymorphism. Respect `PrimitiveProps` in props.
@@ -51,8 +54,12 @@ These notes orient AI coding agents (Copilot, Cursor, Windsurf, etc.) to be prod
 
 ## CSS tokens and theming
 
-- Theme tokens are defined with Tailwind v4 `@theme inline` in `src/styles/theme.css`, plus a `.dark` override. Components should reference semantic tokens (e.g., `bg-primary`, `text-foreground`) not raw colors.
-- Fonts are packaged under `src/fonts` and imported via `fonts.css`. Main CSS applies base styles and sets a `dark` variant via `@custom-variant`.
+- Theme tokens are split into:
+  - `src/styles/tailwind.config.css` - Tailwind v4 `@theme inline` configuration with design tokens (colors, typography, spacing, etc.). This file is exported separately via `@grapegram/ui-kit/tailwind-config` for consumers to import into their Tailwind setup.
+  - `src/styles/theme.css` - CSS variables defining light (`:root`) and dark (`.dark`) themes. Exported via `@grapegram/ui-kit/theme`.
+- Components should reference semantic tokens (e.g., `bg-primary`, `text-foreground`) not raw colors.
+- Fonts are loaded via Google Fonts CDN in `main.css`. Main CSS applies base styles and sets a `dark` variant via `@custom-variant`.
+- Consumers can use design tokens in their own Tailwind utilities by importing `@grapegram/ui-kit/tailwind-config` and `@grapegram/ui-kit/theme` in their CSS.
 
 ## Example pattern: Button
 
@@ -80,3 +87,4 @@ These notes orient AI coding agents (Copilot, Cursor, Windsurf, etc.) to be prod
 - write code like a senior developer using best practices of frameworks and languages
 - follow the architecture and structure of the existing codebase
 - follow connected figma design
+- all documentation for components in stories or .md/mdx files should be written in English
