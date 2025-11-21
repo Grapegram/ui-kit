@@ -140,6 +140,7 @@ export const RightSide: Story = {
     user: { username: 'Me', color: '#10b981' },
     content: { text: 'This is my message', images: [] },
     showHeader: false,
+    timestamp: new Date('2024-01-15T11:45:00'),
   },
   render: (args) => ({
     components: { Message },
@@ -283,6 +284,7 @@ export const WithTextAndImages: Story = {
       ],
     },
     showHeader: true,
+    timestamp: new Date('2024-01-15T15:20:00'),
   },
   render: (args) => ({
     components: { Message },
@@ -337,6 +339,7 @@ Auto-linked URLs work too: https://example.com
       images: [],
     },
     showHeader: true,
+    timestamp: new Date('2024-01-15T13:15:00'),
   },
   render: (args) => ({
     components: { Message },
@@ -378,6 +381,7 @@ export const MessageSequence: Story = {
             :user="leftUser"
             :content="{ text: 'Hey there!', images: [] }"
             :show-header="true"
+            :timestamp="new Date('2024-01-15T11:00:00')"
           />
         </div>
 
@@ -389,6 +393,7 @@ export const MessageSequence: Story = {
             :user="leftUser"
             :content="{ text: 'How are you doing?', images: [] }"
             :show-header="false"
+            :timestamp="new Date('2024-01-15T11:00:00')"
           />
         </div>
 
@@ -400,6 +405,7 @@ export const MessageSequence: Story = {
             :user="leftUser"
             :content="{ text: 'Long time no see!', images: [] }"
             :show-header="false"
+            :timestamp="new Date('2024-01-15T11:00:00')"
           />
         </div>
 
@@ -413,6 +419,7 @@ export const MessageSequence: Story = {
             :user="rightUser"
             :content="{ text: 'Hi Alice!', images: [] }"
             :show-header="false"
+            :timestamp="new Date('2024-01-15T11:01:00')"
           />
         </div>
 
@@ -424,6 +431,7 @@ export const MessageSequence: Story = {
             :user="rightUser"
             :content="{ text: 'I am doing great, thanks!', images: [] }"
             :show-header="false"
+            :timestamp="new Date('2024-01-15T11:01:00')"
           />
         </div>
       </div>
@@ -457,6 +465,7 @@ export const AllVariants: Story = {
             :user="user"
             :content="{ text: 'Standalone message', images: [] }"
             :show-header="true"
+            :timestamp="new Date('2024-01-15T10:00:00')"
           />
         </div>
 
@@ -469,6 +478,7 @@ export const AllVariants: Story = {
             :user="user"
             :content="{ text: 'First in sequence', images: [] }"
             :show-header="true"
+            :timestamp="new Date('2024-01-15T10:05:00')"
           />
         </div>
 
@@ -481,6 +491,7 @@ export const AllVariants: Story = {
             :user="user"
             :content="{ text: 'Middle of sequence', images: [] }"
             :show-header="false"
+            :timestamp="new Date('2024-01-15T10:05:00')"
           />
         </div>
 
@@ -493,6 +504,7 @@ export const AllVariants: Story = {
             :user="user"
             :content="{ text: 'Last in sequence', images: [] }"
             :show-header="false"
+            :timestamp="new Date('2024-01-15T10:05:00')"
           />
         </div>
       </div>
@@ -526,6 +538,7 @@ export const Colors: Story = {
             :user="user"
             :content="{ text: 'Primary color', images: [] }"
             :show-header="true"
+            :timestamp="new Date('2024-01-15T12:00:00')"
           />
         </div>
 
@@ -538,6 +551,7 @@ export const Colors: Story = {
             :user="user"
             :content="{ text: 'Secondary color', images: [] }"
             :show-header="true"
+            :timestamp="new Date('2024-01-15T12:01:00')"
           />
         </div>
       </div>
