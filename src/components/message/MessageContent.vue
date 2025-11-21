@@ -63,11 +63,10 @@ const imageMessageFooterClasses = computed(() => ({
 
       <!-- Inline footer for text messages -->
       <MessageFooter
-        v-if="props.timestamp"
         :timestamp="props.timestamp"
         :status="props.status"
         :overlay-mode="false"
-        class="t-[-2px] ml-4 inline-flex align-bottom"
+        class="ml-4 inline-flex translate-y-1 align-bottom"
       />
     </div>
   </div>
