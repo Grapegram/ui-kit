@@ -45,7 +45,7 @@ Private UI-kit for Grapegram ecosystem.
 ## Table of Contents
 
 - [Explore components in live](#see-live-demos)
-- [How to install](#installation-guide)
+- [How to install locally (for testing)](#local-installation-guide)
 - [How to start developing](#development-guide)
   - [Development policy](#development-policy)
   - [Recommended IDE Setup](#recommended-ide-setup)
@@ -59,57 +59,34 @@ You can access the `components documentation` via link [grapegram.github.io/ui-k
 
 Here you can check `latest releases` of this package: [https://github.com/Grapegram/ui-kit/pkgs/npm/ui-kit](https://github.com/Grapegram/ui-kit/pkgs/npm/ui-kit)
 
-## Installation guide
+## Local Installation Guide
 
-> [!WARNING]
-> To install this package from Grapegram registry you will need to get a `personal access token` from your GitHub account with `read:packages` scope enabled. Then you will need to add it to your `.npmrc` file in your project root folder like this:
->
-> Note that every time when you will need to update and reinstall packages, you will need to have this token set in your environment variable `GITHUB_TOKEN` or you can replace `${GITHUB_TOKEN}` with your actual token string but be careful not to push it to public repositories.
+To avoid publishing package to public npm registry, you can test builded package by linking it locally:
 
-```rc
-@grapegram:registry=https://npm.pkg.github.com/
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
-
-You can install the `latest version` of package via `npm` or `yarn` using the following commands:
-
-Via `npm`:
+In the root of the `ui-kit` project run:
 
 ```bash
-npm install @grapegram/ui-kit
+yarn build
 ```
 
-Via `yarn`:
+Then run:
 
 ```bash
-yarn add @grapegram/ui-kit
+yarn link
 ```
 
-You can install the `specific version` of package via `npm` or `yarn` using the following commands:
-
-Via `npm`:
+After you get the message that package is linked, move to your local project where you want to test the package and run:
 
 ```bash
-npm install @grapegram/ui-kit@0.2.5
+yarn link "@grapegram/ui-kit"
 ```
 
-Via `yarn`:
+Now you can import components from the package in your local project.
+After you finish testing, you can unlink the package by running in your local project to avoid conflicts when you will install the package from GitHub Packages registry:
 
 ```bash
-yarn add @grapegram/ui-kit@0.2.5
+yarn unlink "@grapegram/ui-kit"
 ```
-
-You can also add the package as a dependency into your `package.json` file manually:
-
-```json
-{
-  "dependencies": {
-    "@grapegram/ui-kit": "0.2.5"
-  }
-}
-```
-
-Then run `npm install` or `yarn` to install the package.
 
 ## Development guide
 

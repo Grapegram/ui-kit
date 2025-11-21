@@ -9,19 +9,6 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component: `
-Do not forget to import styles of UI-kit first:
-\`\`\`tsx
-//src/main.ts
-import "@grapegram/ui-kit/styles";
-
-//or directly in your main css entry file
-
-//src/style.css
-@import "@grapegram/ui-kit/styles";
-\`\`\`
-
-Then you can import and use component in your file:
-
 \`\`\`tsx
 //src/components/Component.tsx
 import { Button } from "@grapegram/ui-kit";

@@ -1,0 +1,212 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Getting Started/Installation" />
+
+# 🚀 Installing @grapegram/ui-kit
+
+Welcome to the Grapegram UI Kit documentation! This library provides a set of ready-to-use Vue 3 components with dark theme support and full Tailwind CSS integration.
+
+## Table of Contents
+
+- [Requirements](#️-requirements)
+- [Package Installation](#-package-installation)
+  - [Step 1: Configure GitHub Packages Access](#step-1-configure-github-packages-access)
+  - [Step 2: Install via npm or yarn](#step-2-install-via-npm-or-yarn)
+- [Style Integration](#-style-integration)
+  - [Basic Integration (components only)](#basic-integration-components-only)
+  - [Advanced Integration (with design tokens)](#advanced-integration-with-design-tokens)
+- [Using Components](#-using-components)
+- [Dark Theme](#-dark-theme)
+- [Using Design Tokens](#-using-design-tokens)
+  - [Colors](#colors)
+  - [Typography](#typography)
+- [Useful Links](#-useful-links)
+
+## ⚠️ Requirements
+
+This package requires the following peer dependencies to be installed in your project for correct work:
+
+- Vue 3: `vue@^3`
+- Tailwind CSS 4: `tailwindcss@^4` or higher
+- Lucide Vue Next: `lucide-vue-next@^0.526` or higher
+- TW Animate CSS: `tw-animate-css@^1` or higher
+
+Check the following guides to install required peer dependencies in your `Vue 3 project`:
+
+- [Vue 3 Installation Guide](https://vuejs.org/guide/quick-start.html)
+- [Tailwind CSS 4 Installation Guide](https://vuejs.org/guide/quick-start.html)
+- [TW Animate CSS Installation Guide](https://www.npmjs.com/package/tailwindcss-animate)
+- [Lucide Vue Installation Guide](https://lucide.dev/guide/packages/lucide-vue)
+
+## 📦 Package Installation
+
+### Step 1: Configure GitHub Packages Access
+
+> ⚠️ **Important:**
+> To install this package from Grapegram registry you will need to get a `personal access token` from your GitHub account with `read:packages` scope enabled. Then you will need to add it to your `.npmrc` file in your project root folder like this:
+>
+> Note that every time when you will need to update and reinstall packages, you will need to have this token set in your environment variable `GITHUB_TOKEN` or you can replace `${GITHUB_TOKEN}` with your actual token string but be careful not to push it to public repositories.
+
+Create a `.npmrc` file in the root of your project:
+
+```
+@grapegram:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+### Step 2: Install via npm or yarn
+
+**Via npm:**
+
+Latest verison:
+
+```bash
+npm install @grapegram/ui-kit
+```
+
+Specific version:
+
+```bash
+npm install @grapegram/ui-kit@0.2.3
+```
+
+**Via yarn:**
+
+Latest version:
+
+```bash
+yarn add @grapegram/ui-kit
+```
+
+Specific version:
+
+```bash
+yarn add @grapegram/ui-kit@0.2.3
+```
+
+You can also `add the package` as a dependency into your `package.json` file manually:
+
+```json
+{
+  "dependencies": {
+    "@grapegram/ui-kit": "0.2.3"
+  }
+}
+```
+
+Then run `npm install` or `yarn` to install the package.
+
+## 🎨 Style Integration
+
+### Basic Integration (components only)
+
+> In that case you will use only components without design tokens. It means that your `tailwind` will use `its own default configuration` instead of Grapegram's tailwind configuration.
+
+Import styles in your `main.ts`:
+
+```typescript
+import { createApp } from 'vue'
+import App from './App.vue'
+import '@grapegram/ui-kit/styles'
+
+createApp(App).mount('#app')
+```
+
+### Advanced Integration (with design tokens)
+
+If you want to use `Grapegram preconfigured tailwind` and `design tokens` in your components, create a styles file:
+
+**src/styles/main.css:**
+
+```css
+@import 'tailwindcss';
+
+@import '@grapegram/ui-kit/tailwind-config'; // Import Grapegram Tailwind configuration (provides tailwind utility classes)
+@import '@grapegram/ui-kit/theme'; // Import light and dark theme variables (design tokens)
+
+/* Your custom styles */
+@layer base {
+  * {
+    @apply border-border outline-ring/35;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+```
+
+Import this file in `main.ts`:
+
+```typescript
+import './styles/main.css'
+```
+
+## 🎯 Using Components
+
+After installation, you can import components in your Vue files:
+
+```tsx
+<script setup lang="ts">
+import { Button, Input, Avatar } from '@grapegram/ui-kit'
+</script>
+
+<template>
+  <div>
+    <Button variant="default">Click me</Button>
+    <Input placeholder="Enter text..." />
+    <Avatar>
+      <AvatarImage src="/avatar.jpg" alt="User" />
+      <AvatarFallback>GG</AvatarFallback>
+    </Avatar>
+  </div>
+</template>
+```
+
+## 🌓 Dark Theme
+
+The library supports dark theme out of the box. Add the `dark` class to the root element:
+
+```tsx
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isDark = ref(true)
+</script>
+
+<template>
+  <div :class="{ dark: isDark }">
+    <div class="bg-background text-foreground min-h-screen">
+      <Button @click="isDark = !isDark"> Toggle Theme </Button>
+      <!-- Your content -->
+    </div>
+  </div>
+</template>
+```
+
+## 🎨 Using Design Tokens
+
+After integrating design tokens, you can use them in Tailwind classes:
+
+### Colors
+
+```tsx
+<div class="bg-primary text-primary-foreground">Primary</div>
+<div class="bg-secondary text-secondary-foreground">Secondary</div>
+<div class="bg-accent text-accent-foreground">Accent</div>
+<div class="bg-destructive text-destructive-foreground">Destructive</div>
+```
+
+### Typography
+
+```tsx
+<h1 class="font-rubik text-6xl">Heading</h1>
+<p class="font-body text-base">Body text</p>
+<small class="text-muted-foreground text-xs">Caption</small>
+```
+
+## 🔗 Useful Links
+
+- [GitHub Repository](https://github.com/Grapegram/ui-kit)
+- [NPM Package](https://github.com/Grapegram/ui-kit/pkgs/npm/ui-kit)
+- [Report Issues](https://github.com/Grapegram/ui-kit/issues)
