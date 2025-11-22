@@ -9,6 +9,8 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component: `
+Button component to trigger actions with various styles and sizes.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Button } from "@grapegram/ui-kit";

@@ -12,6 +12,8 @@ const meta = {
     docs: {
       description: {
         component: `
+Badge component to display status or count indicators.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Badge } from "@grapegram/ui-kit";

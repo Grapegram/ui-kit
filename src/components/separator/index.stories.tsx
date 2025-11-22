@@ -10,12 +10,12 @@ const meta = {
     docs: {
       description: {
         component: `
+A separator visually divides content. It can be horizontal or vertical and is purely decorative by default.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Separator } from "@grapegram/ui-kit";
 \`\`\`
-
-A separator visually divides content. It can be horizontal or vertical and is purely decorative by default.
         `,
       },
     },

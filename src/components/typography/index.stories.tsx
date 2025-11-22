@@ -9,6 +9,8 @@ const meta: Meta<typeof Typography> = {
     docs: {
       description: {
         component: `
+Typography component for consistent text styling according to design guidelines.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Typography } from "@grapegram/ui-kit";

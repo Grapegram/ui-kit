@@ -9,12 +9,12 @@ const meta: Meta<typeof Skeleton> = {
     docs: {
       description: {
         component: `
+A skeleton is a placeholder component that mimics the structure of your content while it is loading. It helps improve perceived performance and provides a better user experience by giving users a visual cue that content is being loaded.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Skeleton } from "@grapegram/ui-kit";
 \`\`\`
-
-A skeleton is a placeholder component that mimics the structure of your content while it is loading. It helps improve perceived performance and provides a better user experience by giving users a visual cue that content is being loaded.
         `,
       },
     },

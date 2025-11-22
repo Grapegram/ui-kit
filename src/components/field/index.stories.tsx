@@ -19,6 +19,10 @@ const meta: Meta<typeof Field> = {
     docs: {
       description: {
         component: `
+The Field family is designed for composing accessible forms. Use it to combine labels, controls, and help text.
+
+Check the full documentation and more use-cases in shadcn-vue site [here](https://www.shadcn-vue.com/docs/components/field).
+
 \`\`\`tsx
 //src/components/Component.tsx
 import {
@@ -34,10 +38,6 @@ import {
   FieldTitle
 } from "@grapegram/ui-kit";
 \`\`\`
-
-The Field family is designed for composing accessible forms. Use it to combine labels, controls, and help text.
-
-Check the full documentation and more use-cases in shadcn-vue site [here](https://www.shadcn-vue.com/docs/components/field).
         `,
       },
     },
