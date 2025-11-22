@@ -2,6 +2,44 @@
 /* CSS Variables for runtime theming */
 :root {
   /* *general */
+  --radius: 0.5rem;
+  --line-height-headings: 1.2;
+  --line-height-body: 1.5;
+
+  /* *colors */
+  --background: var(--color-gray-100);
+  --foreground: var(--color-gray-900);
+
+  --accent: var(--color-brand);
+  --accent-foreground: var(--color-gray-50);
+
+  --primary: var(--color-gray-200);
+  --primary-foreground: var(--color-gray-900);
+
+  --secondary: var(--color-gray-150);
+  --secondary-foreground: var(--color-gray-900);
+
+  --muted: var(--color-gray-200);
+  --muted-foreground: var(--color-gray-500);
+
+  --destructive: var(--color-rose-600);
+  --destructive-foreground: var(--color-gray-100);
+
+  --card: var(--color-gray-150);
+  --card-foreground: var(--color-gray-900);
+
+  --popover: var(--color-gray-900);
+  --popover-foreground: var(--color-gray-50);
+
+  --border: var(--color-gray-200);
+  --input: var(--color-gray-200);
+  --ring: var(--color-gray-900);
+  --ring-destructive: var(--color-rose-500);
+  --ring-accent: var(--color-brand);
+}
+
+.dark {
+  /* *general */
   /*? could be setted as percentage values according to figma design */
   --radius: 0.5rem;
 
