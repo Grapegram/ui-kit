@@ -10,6 +10,7 @@ export type Props = {
   text: string | null
   images: string[]
   hasHeader?: boolean
+  side?: 'left' | 'right'
   timestamp: Date
   status?: MessageStatus
   class?: string
@@ -21,6 +22,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<Props>(), {
   hasHeader: false,
+  side: 'left',
   status: 'sent',
 })
 
@@ -42,7 +44,7 @@ const imageMessageFooterClasses = computed(() => ({
 </script>
 
 <template>
-  <div :class="cn('flex flex-col items-center justify-center gap-3', props.class, contentClasses)">
+  <div :class="cn('flex flex-col items-center justify-center gap-1', props.class, contentClasses)">
     <!-- Images above text if both exist, or standalone images -->
     <template v-if="hasImages">
       <ImagesContent :images="props.images" class="w-full" />
@@ -52,21 +54,22 @@ const imageMessageFooterClasses = computed(() => ({
         v-if="hasOnlyImages"
         :timestamp="props.timestamp"
         :status="props.status"
+        :side="props.side"
         :overlay-mode="true"
         :class="cn('absolute', imageMessageFooterClasses)"
       />
     </template>
 
     <!-- Text content with inline footer -->
-    <div v-if="hasText" class="flex w-full items-end justify-between">
-      <TextContent :text="props.text!" class="flex-1 break-words" />
-
+    <div v-if="hasText" class="w-full">
+      <TextContent :text="props.text!" class="break-words" />
       <!-- Inline footer for text messages -->
       <MessageFooter
         :timestamp="props.timestamp"
         :status="props.status"
+        :side="props.side"
         :overlay-mode="false"
-        class="ml-4 inline-flex translate-y-1 align-bottom"
+        class="float-right ml-1 translate-y-1"
       />
     </div>
   </div>
