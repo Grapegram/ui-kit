@@ -8,6 +8,7 @@ export type MessageStatus = 'sending' | 'sent' | 'delivered' | 'read'
 export type Props = {
   timestamp: string | Date
   status?: MessageStatus
+  side?: 'left' | 'right'
   overlayMode?: boolean
   class?: string
 }
@@ -18,6 +19,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<Props>(), {
   status: 'sent',
+  side: 'left',
   overlayMode: false,
 })
 
@@ -32,7 +34,7 @@ const formattedTime = computed(() => {
   return `${hours}:${minutes}`
 })
 
-const showReadIcon = computed(() => false)
+const showReadIcon = computed(() => props.side === 'right')
 
 const footerClasses = computed(() => ({
   'rounded-md py-1 px-2 bg-gray-900/50 backdrop-blur-xs text-primary-foreground': props.overlayMode,
@@ -58,7 +60,7 @@ const footerClasses = computed(() => ({
         v-if="props.status === 'read'"
         :size="14"
         :stroke-width="2.5"
-        class="oppacity-100 color-accent"
+        class="oppacity-100 text-accent"
       />
       <CheckCheck v-else-if="props.status === 'delivered'" :size="14" :stroke-width="2.5" />
       <Check v-else-if="props.status === 'sent'" :size="14" :stroke-width="2.5" />

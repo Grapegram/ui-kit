@@ -10,6 +10,8 @@ const meta: Meta<typeof Input> = {
     docs: {
       description: {
         component: `
+Input component for user text input.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Input } from "@grapegram/ui-kit";

@@ -10,12 +10,12 @@ const meta = {
     docs: {
       description: {
         component: `
+A separator visually divides content. It can be horizontal or vertical and is purely decorative by default.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Separator } from "@grapegram/ui-kit";
 \`\`\`
-
-A separator visually divides content. It can be horizontal or vertical and is purely decorative by default.
         `,
       },
     },
@@ -103,6 +103,29 @@ export const Horizontal: Story = {
   }),
 }
 
+export const Vertical: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Vertical separators are used to divide content side-by-side and span the full height of their container.',
+      },
+    },
+  },
+  render: () => ({
+    components: { Separator },
+    template: `
+    <div class="flex h-5 items-center space-x-4 text-sm">
+      <div>Blog</div>
+      <Separator orientation="vertical" />
+      <div>Docs</div>
+      <Separator orientation="vertical" />
+      <div>Source</div>
+    </div>
+    `,
+  }),
+}
+
 export const CustomSpacing: Story = {
   parameters: {
     docs: {
@@ -167,73 +190,6 @@ export const CustomColor: Story = {
         <div>
           <p class="text-sm font-medium mb-2">Muted color</p>
           <Separator class="bg-muted" />
-        </div>
-      </div>
-    `,
-  }),
-}
-
-export const WithLabel: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Separator can display a label in the center, useful for section dividers or form groups.',
-      },
-    },
-  },
-  render: () => ({
-    components: { Separator },
-    template: `
-      <div class="w-[450px] space-y-8">
-        <div>
-          <div class="text-sm">
-            <p class="font-medium">Previous Section</p>
-            <p class="text-muted-foreground">Content from the previous section.</p>
-          </div>
-
-          <Separator with-label class="my-6">
-            OR
-          </Separator>
-
-          <div class="text-sm">
-            <p class="font-medium">Next Section</p>
-            <p class="text-muted-foreground">Content from the next section.</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="text-sm">
-            <p class="font-medium">Login Information</p>
-            <p class="text-muted-foreground">Enter your credentials below.</p>
-          </div>
-
-          <Separator with-label class="my-6">
-            Continue with
-          </Separator>
-
-          <div class="text-sm">
-            <p class="font-medium">Social Login</p>
-            <p class="text-muted-foreground">Use your social accounts.</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="text-sm space-y-2">
-            <p class="text-muted-foreground">Item 1</p>
-            <p class="text-muted-foreground">Item 2</p>
-            <p class="text-muted-foreground">Item 3</p>
-          </div>
-
-          <Separator with-label class="my-4">
-            2024
-          </Separator>
-
-          <div class="text-sm space-y-2">
-            <p class="text-muted-foreground">Item 4</p>
-            <p class="text-muted-foreground">Item 5</p>
-            <p class="text-muted-foreground">Item 6</p>
-          </div>
         </div>
       </div>
     `,

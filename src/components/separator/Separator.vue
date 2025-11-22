@@ -5,18 +5,12 @@ import { reactiveOmit } from '@vueuse/core'
 import { Separator } from 'reka-ui'
 import { cn } from '@/lib/utils'
 
-interface Props extends SeparatorProps {
-  class?: HTMLAttributes['class']
-  withLabel?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<SeparatorProps & { class?: HTMLAttributes['class'] }>(), {
   orientation: 'horizontal',
   decorative: true,
-  withLabel: false,
 })
 
-const delegatedProps = reactiveOmit(props, 'class', 'withLabel')
+const delegatedProps = reactiveOmit(props, 'class')
 
 defineOptions({
   name: 'BaseSeparator',
@@ -24,25 +18,7 @@ defineOptions({
 </script>
 
 <template>
-  <div v-if="withLabel" class="relative">
-    <Separator
-      data-slot="separator"
-      v-bind="delegatedProps"
-      :class="
-        cn(
-          'bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px',
-          props.class,
-        )
-      "
-    />
-    <div
-      class="bg-background text-muted-foreground absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-2 text-xs"
-    >
-      <slot />
-    </div>
-  </div>
   <Separator
-    v-else
     data-slot="separator"
     v-bind="delegatedProps"
     :class="

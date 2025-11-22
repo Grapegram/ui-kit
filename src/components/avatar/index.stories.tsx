@@ -10,6 +10,8 @@ const meta = {
     docs: {
       description: {
         component: `
+Avatar component to display user profile images with fallback support.
+
 \`\`\`tsx
 //src/components/Component.tsx
 import { Avatar, AvatarImage, AvatarFallback } from "@grapegram/ui-kit";

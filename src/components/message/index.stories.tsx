@@ -12,19 +12,6 @@ const meta: Meta<typeof Message> = {
         component: `
 A flexible message component for chat interfaces with support for different sides, colors, variants, and tails.
 
-Do not forget to import styles of UI-kit first:
-\`\`\`tsx
-//src/main.ts
-import "@grapegram/ui-kit/styles";
-
-//or directly in your main css entry file
-
-//src/style.css
-@import "@grapegram/ui-kit/styles";
-\`\`\`
-
-Then you can import and use component in your file:
-
 \`\`\`tsx
 //src/components/Component.tsx
 import { Message } from "@grapegram/ui-kit";
@@ -811,6 +798,124 @@ export const LongMessage: Story = {
     template: `
       <div style="max-width: 400px;">
         <Message v-bind="args" />
+      </div>
+    `,
+  }),
+}
+
+export const MessageStatuses: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Message status indicators are displayed only for messages on the right side (sent by the current user). Shows all possible statuses: sending, sent, delivered, and read.',
+      },
+    },
+  },
+  render: () => ({
+    components: { Message },
+    setup() {
+      return {
+        bob: { username: 'Bob', color: '#10b981' },
+      }
+    },
+    template: `
+      <div style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; padding: 20px; background: var(--background); border-radius: 12px;">
+        <div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: var(--foreground);">Sending Status</p>
+          <div style="display: flex; justify-content: flex-end;">
+            <Message
+              side="right"
+              color="primary"
+              variant="standalone"
+              :user="bob"
+              :content="{ text: 'This message is being sent...', images: [] }"
+              :show-header="false"
+              :timestamp="new Date('2024-01-15T10:00:00')"
+              status="sending"
+            />
+          </div>
+        </div>
+
+        <div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: var(--foreground);">Sent Status (One Check)</p>
+          <div style="display: flex; justify-content: flex-end;">
+            <Message
+              side="right"
+              color="primary"
+              variant="standalone"
+              :user="bob"
+              :content="{ text: 'This message was sent to the server.', images: [] }"
+              :show-header="false"
+              :timestamp="new Date('2024-01-15T10:01:00')"
+              status="sent"
+            />
+          </div>
+        </div>
+
+        <div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: var(--foreground);">Delivered Status (Two Checks)</p>
+          <div style="display: flex; justify-content: flex-end;">
+            <Message
+              side="right"
+              color="primary"
+              variant="standalone"
+              :user="bob"
+              :content="{ text: 'This message was delivered to the recipient.', images: [] }"
+              :show-header="false"
+              :timestamp="new Date('2024-01-15T10:02:00')"
+              status="delivered"
+            />
+          </div>
+        </div>
+
+        <div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: var(--foreground);">Read Status (Two Checks - Colored)</p>
+          <div style="display: flex; justify-content: flex-end;">
+            <Message
+              side="right"
+              color="primary"
+              variant="standalone"
+              :user="bob"
+              :content="{ text: 'This message was read by the recipient.', images: [] }"
+              :show-header="false"
+              :timestamp="new Date('2024-01-15T10:03:00')"
+              status="read"
+            />
+          </div>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <p style="margin-bottom: 8px; font-weight: 600; color: var(--foreground);">Left Side (No Status Icons)</p>
+          <div style="display: flex; justify-content: flex-start;">
+            <Message
+              side="left"
+              color="secondary"
+              variant="standalone"
+              :user="{ username: 'Alice', color: '#ec4899' }"
+              :content="{ text: 'Messages from others do not show status icons.', images: [] }"
+              :show-header="true"
+              :timestamp="new Date('2024-01-15T10:04:00')"
+              status="read"
+            />
+          </div>
+        </div>
+
+        <div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: var(--foreground);">Status with Image</p>
+          <div style="display: flex; justify-content: flex-end;">
+            <Message
+              side="right"
+              color="primary"
+              variant="standalone"
+              :user="bob"
+              :content="{ text: null, images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4'] }"
+              :show-header="false"
+              :timestamp="new Date('2024-01-15T10:05:00')"
+              status="read"
+            />
+          </div>
+        </div>
       </div>
     `,
   }),
