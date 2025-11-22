@@ -32,12 +32,12 @@ const hasOnlyImages = computed(() => !hasText.value && hasImages.value)
 const contentClasses = computed(() => ({
   'px-3 py-3': hasImages.value || hasText.value,
   'pt-0': props.hasHeader,
-  'p-0': isSingleImage.value,
+  'p-0': isSingleImage.value && !props.hasHeader,
 }))
 
 const imageMessageFooterClasses = computed(() => ({
   'bottom-4 right-4': hasImages.value,
-  'bottom-1 right-1': isSingleImage.value,
+  'bottom-1 right-1': isSingleImage.value && !props.hasHeader,
 }))
 </script>
 
