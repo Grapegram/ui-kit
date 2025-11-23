@@ -45,6 +45,9 @@
     },
     "./theme": {
       "default": "./dist/styles/theme.css"
+    },
+    "./fonts": {
+      "default": "./dist/styles/fonts.css"
     }
   },
   "scripts": {

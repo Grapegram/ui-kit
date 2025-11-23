@@ -38,6 +38,10 @@ export default defineConfig({
           src: 'src/styles/theme.css',
           dest: 'styles',
         },
+        {
+          src: 'src/styles/fonts.css',
+          dest: 'styles',
+        },
       ],
     }),
   ],

@@ -119,10 +119,11 @@ If you want to use `Grapegram preconfigured tailwind` and `design tokens` in you
 **src/styles/main.css:**
 
 ```css
-@import 'tailwindcss';
-
-@import '@grapegram/ui-kit/tailwind-config'; // Import Grapegram Tailwind configuration (provides tailwind utility classes)
-@import '@grapegram/ui-kit/theme'; // Import light and dark theme variables (design tokens)
+@import '@grapegram/ui-kit/fonts'; /* File with configured fonts */
+@import 'tailwindcss'; /* Tailwind base integration */
+@import '@grapegram/ui-kit/tailwind-config'; /* Grapegram Tailwind config with design tokens */
+@import '@grapegram/ui-kit/theme'; /* Import light and dark theme variables (design tokens) */
+@import '@grapegram/ui-kit/styles'; /* Import compiled component styles */
 
 /* Your custom styles */
 @layer base {
