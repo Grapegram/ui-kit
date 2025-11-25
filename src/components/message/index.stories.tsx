@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import Message from './Message.vue'
-import type { Side, Color, Variants, User, MessageContent } from './Message.vue'
+import type {
+  MessageSide,
+  MessageColor,
+  MessageVariants,
+  MessageSender,
+  MessageContent,
+} from './Message.vue'
 
 const meta: Meta<typeof Message> = {
   title: 'Components/Message',
@@ -24,24 +30,24 @@ import { Message } from "@grapegram/ui-kit";
   argTypes: {
     side: {
       control: 'select',
-      options: ['left', 'right'] as Side[],
+      options: ['left', 'right'] as MessageSide[],
       description: 'Position of the message bubble',
     },
     color: {
       control: 'select',
-      options: ['primary', 'secondary'] as Color[],
+      options: ['primary', 'secondary'] as MessageColor[],
       description: 'Background color variant',
     },
     variant: {
       control: 'select',
-      options: ['first', 'middle', 'last', 'standalone'] as Variants[],
+      options: ['first', 'middle', 'last', 'standalone'] as MessageVariants[],
       description: 'Message position in a sequence',
     },
     showHeader: {
       control: 'boolean',
       description: 'Show username header',
     },
-    user: {
+    sender: {
       control: 'object',
       description: 'User information',
     },
@@ -65,7 +71,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const defaultUser: User = {
+const defaultUser: MessageSender = {
   username: 'John Doe',
   color: '#3b82f6',
 }
@@ -80,7 +86,7 @@ export const Default: Story = {
     side: 'left',
     color: 'primary',
     variant: 'standalone',
-    user: defaultUser,
+    sender: defaultUser,
     content: defaultContent,
     showHeader: true,
     timestamp: new Date('2024-01-15T12:34:00'),
@@ -100,7 +106,7 @@ export const LeftSide: Story = {
     side: 'left',
     color: 'secondary',
     variant: 'standalone',
-    user: defaultUser,
+    sender: defaultUser,
     content: defaultContent,
     showHeader: true,
     timestamp: new Date('2024-01-15T10:23:00'),
@@ -124,7 +130,7 @@ export const RightSide: Story = {
     side: 'right',
     color: 'primary',
     variant: 'standalone',
-    user: { username: 'Me', color: '#10b981' },
+    sender: { username: 'Me', color: '#10b981' },
     content: { text: 'This is my message', images: [] },
     showHeader: false,
     timestamp: new Date('2024-01-15T11:45:00'),
@@ -147,7 +153,7 @@ export const WithSingleImage: Story = {
     side: 'left',
     color: 'secondary',
     variant: 'standalone',
-    user: { username: 'Alice', color: '#ec4899' },
+    sender: { username: 'Alice', color: '#ec4899' },
     content: {
       text: null,
       images: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4'],
@@ -181,7 +187,7 @@ export const WithMultipleImages: Story = {
     components: { Message },
     setup() {
       return {
-        user: { username: 'Alice', color: '#ec4899' },
+        sender: { username: 'Alice', color: '#ec4899' },
       }
     },
     template: `
@@ -262,7 +268,7 @@ export const WithTextAndImages: Story = {
     side: 'left',
     color: 'secondary',
     variant: 'standalone',
-    user: { username: 'Alice', color: '#ec4899' },
+    sender: { username: 'Alice', color: '#ec4899' },
     content: {
       text: 'Check out these amazing views! 🌄',
       images: [
@@ -299,7 +305,7 @@ export const WithMarkdown: Story = {
     side: 'left',
     color: 'secondary',
     variant: 'standalone',
-    user: { username: 'Developer', color: '#3b82f6' },
+    sender: { username: 'Developer', color: '#3b82f6' },
     content: {
       text: `Here's some **Markdown** support:
 
@@ -354,8 +360,8 @@ export const MessageSequence: Story = {
     components: { Message },
     setup() {
       return {
-        leftUser: { username: 'Alice', color: '#ec4899' },
-        rightUser: { username: 'Bob', color: '#10b981' },
+        leftsender: { username: 'Alice', color: '#ec4899' },
+        rightsender: { username: 'Bob', color: '#10b981' },
       }
     },
     template: `
@@ -438,7 +444,7 @@ export const AllVariants: Story = {
     components: { Message },
     setup() {
       return {
-        user: { username: 'User', color: '#3b82f6' },
+        sender: { username: 'User', color: '#3b82f6' },
       }
     },
     template: `
@@ -511,7 +517,7 @@ export const Colors: Story = {
     components: { Message },
     setup() {
       return {
-        user: { username: 'User', color: '#3b82f6' },
+        sender: { username: 'User', color: '#3b82f6' },
       }
     },
     template: `
@@ -781,7 +787,7 @@ export const LongMessage: Story = {
     side: 'left',
     color: 'secondary',
     variant: 'standalone',
-    user: { username: 'Alice', color: '#ec4899' },
+    sender: { username: 'Alice', color: '#ec4899' },
     content: {
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       images: [],
