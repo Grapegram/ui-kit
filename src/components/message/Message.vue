@@ -18,7 +18,7 @@ export type MessageProps = {
   color: MessageColor
   variant: MessageVariants
   showHeader: boolean
-  user: MessageSender
+  sender: MessageSender
   content: MessageContent
   timestamp: Date
   status: MessageStatus
@@ -87,7 +87,11 @@ const showHeader = computed(
         )
       "
     >
-      <MessageHeader v-if="showHeader" :username="props.user.username" :color="props.user.color" />
+      <MessageHeader
+        v-if="showHeader"
+        :username="props.sender.username"
+        :color="props.sender.color"
+      />
       <MessageContent
         :text="props.content.text"
         :images="props.content.images"
