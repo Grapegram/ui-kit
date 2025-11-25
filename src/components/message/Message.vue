@@ -1,10 +1,10 @@
 <script lang="ts">
-export type Side = 'left' | 'right'
-export type Color = 'primary' | 'secondary'
-export type Variants = 'first' | 'middle' | 'last' | 'standalone'
+export type MessageSide = 'left' | 'right'
+export type MessageColor = 'primary' | 'secondary'
+export type MessageVariants = 'first' | 'middle' | 'last' | 'standalone'
 export type MessageStatus = 'sending' | 'sent' | 'delivered' | 'read'
 
-export type User = {
+export type MessageSender = {
   username: string
   color?: string
 }
@@ -13,13 +13,13 @@ export type MessageContent = {
   images: string[]
 }
 
-export type Props = {
-  side: Side
-  color: Color
-  variant: Variants
-  user: User
-  content: MessageContent
+export type MessageProps = {
+  side: MessageSide
+  color: MessageColor
+  variant: MessageVariants
   showHeader: boolean
+  user: MessageSender
+  content: MessageContent
   timestamp: Date
   status: MessageStatus
   class?: HTMLAttributes['class']
@@ -37,7 +37,7 @@ import MessageTail from './MessageTail.vue'
 defineOptions({
   name: 'BaseMessage',
 })
-const props = defineProps<Props>()
+const props = defineProps<MessageProps>()
 
 const messageVariants = computed(() => ({
   'rounded-bl-[var(--radius-message-small)]': props.variant === 'first' && props.side === 'left',

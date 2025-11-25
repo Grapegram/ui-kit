@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import Message from './Message.vue'
-import type { Side, Color, Variants, User, MessageContent } from './Message.vue'
+import type {
+  MessageSide,
+  MessageColor,
+  MessageVariants,
+  MessageSender,
+  MessageContent,
+} from './Message.vue'
 
 const meta: Meta<typeof Message> = {
   title: 'Components/Message',
@@ -37,17 +43,17 @@ import { Message } from "@grapegram/ui-kit";
   argTypes: {
     side: {
       control: 'select',
-      options: ['left', 'right'] as Side[],
+      options: ['left', 'right'] as MessageSide[],
       description: 'Position of the message bubble',
     },
     color: {
       control: 'select',
-      options: ['primary', 'secondary'] as Color[],
+      options: ['primary', 'secondary'] as MessageColor[],
       description: 'Background color variant',
     },
     variant: {
       control: 'select',
-      options: ['first', 'middle', 'last', 'standalone'] as Variants[],
+      options: ['first', 'middle', 'last', 'standalone'] as MessageVariants[],
       description: 'Message position in a sequence',
     },
     showHeader: {
@@ -78,7 +84,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const defaultUser: User = {
+const defaultUser: MessageSender = {
   username: 'John Doe',
   color: '#3b82f6',
 }
