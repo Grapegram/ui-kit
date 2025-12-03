@@ -42,6 +42,10 @@ export default defineConfig({
           src: 'src/styles/fonts.css',
           dest: 'styles',
         },
+        {
+          src: 'src/styles/animations.css',
+          dest: 'styles',
+        },
       ],
     }),
   ],
