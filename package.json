@@ -48,6 +48,9 @@
     },
     "./fonts": {
       "default": "./dist/styles/fonts.css"
+    },
+    "./animations": {
+      "default": "./dist/styles/animations.css"
     }
   },
   "scripts": {
